@@ -165,7 +165,7 @@
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-secondary">
+<body class="bg-background-light dark:bg-background-dark text-secondary pb-16 md:pb-0">
     <header class="sticky top-0 z-50 bg-secondary text-white shadow-lg relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -180,7 +180,7 @@
                     </div>
                 </div>
                 <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+                    <a class="text-sm font-semibold text-primary transition-colors" href="index.html">Home</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors" href="history.html">About</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors" href="squads.html">Squads</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors"
@@ -508,7 +508,7 @@
                     </form>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 h-fit sticky top-24">
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 h-fit sticky top-24 hidden lg:block">
                     <h4 class="font-bold text-xl mb-4 text-secondary text-center">Availability Calendar</h4>
 
                     <div class="flex items-center justify-between mb-4">
@@ -633,8 +633,41 @@
         </div>
     </footer>
 
+    <nav
+        class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 flex justify-around items-center h-16 md:hidden shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
+        <a href="index.html" class="flex flex-col items-center justify-center w-full text-primary">
+            <span class="material-symbols-outlined text-[24px] fill-current">home</span>
+            <span class="text-[10px] font-bold mt-1 tracking-wide">Home</span>
+        </a>
+        <a href="squads.html"
+            class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[24px]">groups</span>
+            <span class="text-[10px] font-bold mt-1 tracking-wide">Squads</span>
+        </a>
+        <a href="fixtures.html"
+            class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+            <span class="text-[10px] font-bold mt-1 tracking-wide">Fixtures</span>
+        </a>
+        <a href="reservation.html"
+            class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[24px]">store</span>
+            <span class="text-[10px] font-bold mt-1 tracking-wide">Facilities</span>
+        </a>
+    </nav>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            // Mobile Menu Toggle Script added to make the top nav toggle work
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('open');
+                    menuBtn.querySelector('span').textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+                });
+            }
 
             const bookingForm = document.getElementById('booking-form');
             const mainLoc = document.getElementById('main-location');
@@ -669,17 +702,54 @@
                 ctx.scale(ratio, ratio);
             }
             resizeCanvas();
+            window.addEventListener('resize', resizeCanvas); // Ensures canvas scales properly on device rotation
 
             canvas.addEventListener('mousedown', () => isDrawing = true);
             canvas.addEventListener('mouseup', () => isDrawing = false);
             canvas.addEventListener('mousemove', (e) => {
                 if (!isDrawing) return;
+
+                // Get correct mouse position relative to canvas
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
                 ctx.lineWidth = 2;
                 ctx.lineCap = "round";
-                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.lineTo(x, y);
                 ctx.stroke();
                 ctx.beginPath();
-                ctx.moveTo(e.offsetX, e.offsetY);
+                ctx.moveTo(x, y);
+            });
+
+            // Touch support for mobile devices
+            canvas.addEventListener('touchstart', (e) => {
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const y = e.touches[0].clientY - rect.top;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                e.preventDefault(); // prevent scrolling while signing
+            }, { passive: false });
+
+            canvas.addEventListener('touchmove', (e) => {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const y = e.touches[0].clientY - rect.top;
+                ctx.lineWidth = 2;
+                ctx.lineCap = "round";
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                e.preventDefault(); // prevent scrolling
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', () => {
+                isDrawing = false;
+                ctx.beginPath();
             });
 
             document.getElementById('clear-signature').addEventListener('click', () => {
