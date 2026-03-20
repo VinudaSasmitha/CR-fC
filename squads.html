@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Facilities | CR & FC</title>
+    <title>Squads - CR&FC</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
@@ -19,7 +19,7 @@
                         "primary": "#d33131",
                         "secondary": "#1a2a44",
                         "background-light": "#f8f6f6",
-                        "background-dark": "#201212",
+                        "background-dark": "#201212"
                     },
                     fontFamily: {
                         "display": ["Lexend", "sans-serif"]
@@ -31,9 +31,9 @@
     <style>
         body {
             font-family: 'Lexend', sans-serif;
-            background-color: #f8f9fa;
         }
 
+        /* Mobile Menu Transitions */
         #mobile-menu {
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
@@ -46,103 +46,108 @@
             opacity: 1;
         }
 
-        .facility-card:hover .facility-img {
-            transform: scale(1.05);
+        /* Card Image Zoom Effect on Hover */
+        .player-card:hover .player-img {
+            transform: scale(1.1);
         }
 
-        .facility-card {
-            transition: all 0.3s ease;
+        /* Smooth Navy Blue Overlay Fade */
+        .overlay-details {
+            transition: all 0.4s ease;
         }
 
-        .facility-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #d33131;
+        /* Custom Scrollbar for Table */
+        .table-scroll::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
         }
 
-        /* Modal Animations */
-        .modal-enter {
-            animation: modalFadeIn 0.3s ease-out forwards;
+        .table-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
         }
 
-        .modal-exit {
-            animation: modalFadeOut 0.3s ease-in forwards;
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
 
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+        .table-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
 
-        @keyframes modalFadeOut {
-            from {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+        /* Highlight Row Animation */
+        .highlight-row {
+            background-color: #fee2e2 !important;
+            transition: background-color 0.5s ease;
+        }
 
-            to {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
+        /* Search Suggestion Scrollbar */
+        #past-captain-suggestions {
+            max-height: 250px;
+        }
+
+        #past-captain-suggestions::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #past-captain-suggestions::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+
+        #past-captain-suggestions::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
     </style>
 </head>
 
-<body class="text-secondary selection:bg-primary selection:text-white pb-16 md:pb-0">
+<body
+    class="bg-background-light dark:bg-background-dark text-secondary selection:bg-primary selection:text-white pb-16 md:pb-0">
 
     <header class="sticky top-0 z-50 bg-secondary text-white shadow-lg relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 sm:gap-3">
                     <div class="bg-white p-1 rounded-lg">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
-                            alt="CR & FC Logo" class="h-10 w-auto object-contain" />
+                            alt="CR & FC Logo" class="h-8 sm:h-10 w-auto object-contain" />
                     </div>
                     <div>
-                        <h1 class="text-xl font-extrabold tracking-tight leading-none">CR & FC</h1>
-                        <p class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight leading-none">CR & FC</h1>
+                        <p class="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Est. 1922
+                        </p>
                     </div>
                 </div>
                 <nav class="hidden md:flex items-center gap-8">
                     <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors" href="history.html">About</a>
-                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="squads.html">Squads</a>
+                    <a class="text-sm font-semibold text-primary transition-colors" href="squads.html">Squads</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors"
                         href="merchandise.html">Merchandise</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors"
                         href="fixtures.html">Fixtures</a>
-                    <a class="text-sm font-semibold hover:text-primary transition-colors text-primary"
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
                         href="reservation.html">Facilities</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors"
                         href="collection.html">Gallery</a>
 
                     <div class="flex items-center gap-4">
                         <button onclick="alert('Redirecting to Login Portal...')"
-                            class="hidden sm:block bg-primary hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md active:scale-95">
+                            class="hidden lg:block bg-primary hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md active:scale-95">
                             Login / Pay
                         </button>
-                        <div class="hidden sm:block border-l border-white/20 h-8 mx-2"></div>
+                        <div class="hidden lg:block border-l border-white/20 h-8 mx-2"></div>
                         <button onclick="toggleSearch()" class="text-white hover:text-primary transition-colors">
                             <span class="material-symbols-outlined">search</span>
                         </button>
-                        <button id="mobile-menu-btn"
-                            class="md:hidden text-white hover:text-primary transition-colors ml-2">
-                            <span class="material-symbols-outlined text-3xl">menu</span>
-                        </button>
                     </div>
                 </nav>
-                <div class="flex md:hidden items-center gap-3">
+                <div class="flex md:hidden items-center gap-2">
                     <button onclick="toggleSearch()" class="text-white hover:text-primary transition-colors">
                         <span class="material-symbols-outlined text-2xl">search</span>
                     </button>
-                    <button id="mobile-menu-btn" class="text-white hover:text-primary transition-colors">
+                    <button id="mobile-menu-btn" class="text-white hover:text-primary transition-colors ml-2">
                         <span class="material-symbols-outlined text-3xl">menu</span>
                     </button>
                 </div>
@@ -153,7 +158,9 @@
             class="absolute top-20 left-0 w-full bg-secondary border-t border-white/10 shadow-xl md:hidden z-40">
             <div class="flex flex-col px-6 py-4 gap-4">
                 <a class="text-sm font-semibold text-white hover:text-primary" href="history.html">About</a>
-                <a class="text-sm font-semibold text-white hover:text-primary" href="merchandise.html">Merchandise</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="squads.html">Squads</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="fixtures.html">Fixtures</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="reservation.html">Facilities</a>
                 <a class="text-sm font-semibold text-white hover:text-primary" href="collection.html">Gallery</a>
                 <button onclick="alert('Redirecting to Login Portal...')"
                     class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold mt-2 w-full text-center">
@@ -163,270 +170,145 @@
         </div>
     </header>
 
-    <main class="pb-16 sm:pb-24">
-        <section class="bg-secondary py-16 sm:py-24 px-4 text-center relative overflow-hidden">
+    <main class="pt-6 sm:pt-8 pb-16 sm:pb-24">
+        <section class="max-w-7xl mx-auto px-4 mb-10 sm:mb-16">
             <div
-                class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1543165243-d92e591a457c?q=80&w=1920')] bg-cover bg-center">
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/90"></div>
-            <div class="relative z-10 max-w-4xl mx-auto">
-                <span
-                    class="bg-primary/20 border border-primary text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-4 sm:mb-6 inline-block">Experience
-                    Excellence</span>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 sm:mb-6 tracking-tight">OUR <span
-                        class="text-primary">Facilities</span></h1>
-                <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed px-2">
-                    Discover the premium amenities available to members and guests at the historic Longdon Place. From
-                    professional sports grounds to relaxing clubhouses.
-                </p>
+                class="bg-secondary rounded-2xl p-6 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 z-0 opacity-20">
+                    <img src="https://epress.lk/wp-content/uploads/2024/02/Rugby-2--scaled.jpg"
+                        class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 uppercase tracking-tight">The
+                        Red Shirts</h1>
+                    <p class="text-base sm:text-xl max-w-2xl mx-auto text-gray-300">Meet the men who wear the iconic red
+                        jersey with
+                        pride, continuing a legacy of rugby excellence.</p>
+                </div>
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-4 -mt-8 sm:-mt-10 relative z-20">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <section class="max-w-7xl mx-auto px-4 mb-12 sm:mb-20">
+            <div class="flex items-center gap-3 mb-6 sm:mb-8 border-b-2 border-gray-200 pb-3 sm:pb-4">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">local_police</span>
+                <h2 class="text-2xl sm:text-3xl font-black dark:text-white uppercase tracking-wide">Team Captain</h2>
+            </div>
 
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col lg:col-span-2">
-                    <div class="h-48 sm:h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1596489360980-87422f42a1aa?q=80&w=1200"
-                            alt="Rugby Ground"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                        <div
-                            class="absolute top-4 right-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded shadow-md">
-                            Capacity: ~5,500</div>
+            <div
+                class="bg-white dark:bg-secondary rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row group cursor-pointer hover:shadow-2xl transition-all">
+                <div class="md:w-2/5 h-64 md:h-96 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600&auto=format&fit=crop"
+                        alt="Lasindu Karunathilake"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute bottom-0 left-0 bg-primary text-white font-black text-2xl sm:text-4xl px-6 sm:px-8 py-3 sm:py-4 rounded-tr-2xl z-10 shadow-lg">
+                        8</div>
+                </div>
+                <div class="md:w-3/5 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative bg-white">
+                    <div class="absolute top-4 right-4 sm:top-8 sm:right-8 opacity-10">
+                        <span class="material-symbols-outlined text-6xl sm:text-9xl">sports_rugby</span>
                     </div>
-                    <div class="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-grow">
+                    <h3 class="text-2xl sm:text-4xl font-black text-secondary mb-2 relative z-10">Lasindu Karunathilake
+                    </h3>
+                    <p
+                        class="text-primary text-sm sm:text-lg font-bold uppercase tracking-widest mb-6 sm:mb-8 relative z-10">
+                        No.8 /
+                        Captain</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 relative z-10">
                         <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="material-symbols-outlined text-primary text-2xl">sports_rugby</span>
-                                <h3 class="text-xl sm:text-2xl font-black text-secondary">CR & FC Grounds</h3>
-                            </div>
-                            <p class="text-gray-500 text-sm mb-4 leading-relaxed">The legendary grass rugby field, home
-                                to the Red Shirts.</p>
-                            <ul
-                                class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-secondary font-semibold mb-6">
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">check_circle</span> Night
-                                    matches (Floodlights)</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Dressing rooms & Pavilion</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Corporate viewing boxes</li>
-                            </ul>
+                            <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">Age</p>
+                            <p class="text-base sm:text-lg font-bold text-gray-800">~29</p>
                         </div>
-                        <button onclick="openModal('rugby')"
-                            class="w-full md:w-auto self-start bg-primary text-white font-bold py-2.5 px-8 rounded-lg hover:bg-red-700 transition shadow-md">Book
-                            Ground</button>
-                    </div>
-                </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 sm:h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800"
-                            alt="Clubhouse"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col justify-between flex-grow">
                         <div>
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="material-symbols-outlined text-primary text-2xl">local_cafe</span>
-                                <h3 class="text-xl font-black text-secondary">Clubhouse Facilities</h3>
-                            </div>
-                            <p class="text-gray-500 text-sm mb-4 leading-relaxed">Relax and socialize in our premium
-                                clubhouse environments.</p>
-                            <ul class="space-y-2 text-xs sm:text-sm text-secondary font-semibold mb-6">
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">restaurant</span> Sports
-                                    Bar & Restaurant</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">sports_esports</span>
-                                    Billiards Room</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-primary text-sm">deck</span> Match Viewing
-                                    Deck</li>
-                            </ul>
+                            <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">Nickname
+                            </p>
+                            <p class="text-base sm:text-lg font-bold text-gray-800">Kara</p>
                         </div>
-                        <button onclick="openModal('clubhouse')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2.5 rounded-lg hover:bg-primary hover:text-white transition">Reserve
-                            a Table</button>
+                        <div class="col-span-2 md:col-span-1">
+                            <p class="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider">School
+                            </p>
+                            <p class="text-sm font-bold text-gray-800 mt-1">Science College Mount Lavinia</p>
+                        </div>
+                    </div>
+                    <p
+                        class="text-sm sm:text-base text-gray-600 leading-relaxed italic border-l-4 border-primary pl-4 relative z-10 bg-gray-50 py-3 rounded-r-lg">
+                        "CR & FC Captain. Powerful ball carrier and breakdown specialist leading from the front."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 mb-12 sm:mb-20">
+            <div class="flex items-center gap-3 mb-6 sm:mb-8 border-b-2 border-gray-200 pb-3 sm:pb-4">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">front_hand</span>
+                <h2 class="text-2xl sm:text-3xl font-black dark:text-white uppercase tracking-wide">Forwards</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8"
+                id="forwards-grid">
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 mb-16 sm:mb-24">
+            <div class="flex items-center gap-3 mb-6 sm:mb-8 border-b-2 border-gray-200 pb-3 sm:pb-4">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">sprint</span>
+                <h2 class="text-2xl sm:text-3xl font-black dark:text-white uppercase tracking-wide">Backs</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8" id="backs-grid">
+            </div>
+        </section>
+
+        <section class="max-w-5xl mx-auto px-4">
+            <div class="bg-gray-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 border border-gray-200 shadow-inner">
+                <div class="text-center mb-6 sm:mb-8">
+                    <div
+                        class="inline-flex items-center justify-center p-2 sm:p-3 bg-primary rounded-full text-white mb-3 sm:mb-4 shadow-md">
+                        <span class="material-symbols-outlined text-2xl sm:text-3xl">history_edu</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black text-secondary mb-2">Past Captains Roll of Honour</h2>
+                    <p class="text-xs sm:text-sm text-gray-500">The legendary leaders who guided the Red Shirts since
+                        1923.</p>
+                </div>
+
+                <div class="relative w-full max-w-md mx-auto mb-6 sm:mb-8" id="search-container-captains">
+                    <input type="text" id="past-captain-search" placeholder="Search by captain name or year..."
+                        class="w-full text-sm bg-white border border-gray-300 shadow-sm rounded-full py-2.5 sm:py-3 pl-10 sm:pl-12 pr-4 focus:ring-primary focus:border-primary transition-all">
+                    <span
+                        class="material-symbols-outlined absolute left-3 sm:left-4 top-2.5 sm:top-3 text-gray-400">search</span>
+
+                    <div id="past-captain-suggestions"
+                        class="absolute z-50 w-full bg-white border border-gray-200 rounded-lg mt-2 shadow-2xl hidden overflow-y-auto">
                     </div>
                 </div>
 
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Gym"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                        <div
-                            class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
-                            5 AM - 10 PM</div>
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">fitness_center</span>
-                            <h3 class="text-lg font-black text-secondary">Power World Gym</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">Inside the club premises.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Weight training
-                                equipment</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Fitness training
-                                for rugby players</li>
-                        </ul>
-                        <button onclick="openModal('gym')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Inquire
-                            Membership</button>
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+                    <div class="overflow-x-auto table-scroll max-h-[400px] sm:max-h-[500px]">
+                        <table class="w-full text-left text-sm whitespace-nowrap">
+                            <thead class="bg-secondary text-white sticky top-0 z-10 border-b-4 border-primary">
+                                <tr>
+                                    <th
+                                        class="py-3 sm:py-4 px-4 sm:px-8 font-bold uppercase tracking-wider w-1/3 text-[10px] sm:text-xs">
+                                        Year</th>
+                                    <th
+                                        class="py-3 sm:py-4 px-4 sm:px-8 font-bold uppercase tracking-wider text-[10px] sm:text-xs">
+                                        Captain Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100" id="past-captains-table-body">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1576013551627-11971f36c9d0?q=80&w=800" alt="Pool"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                        <div
-                            class="absolute top-4 right-4 bg-secondary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
-                            Swim America</div>
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">pool</span>
-                            <h3 class="text-lg font-black text-secondary">Swimming Pool</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">For members and training.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Club member
-                                access</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Swim classes
-                                (Swim America)</li>
-                        </ul>
-                        <button onclick="openModal('pool')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
-                            Session</button>
-                    </div>
-                </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a631d1?q=80&w=800" alt="Tennis"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">sports_tennis</span>
-                            <h3 class="text-lg font-black text-secondary">Tennis Courts</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">Premium outdoor courts.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Floodlit for
-                                night play</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Tennis academy
-                                training</li>
-                        </ul>
-                        <button onclick="openModal('tennis')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
-                            Court</button>
-                    </div>
-                </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative bg-secondary flex items-center justify-center">
-                        <span class="material-symbols-outlined text-7xl text-white/20">sports_tennis</span>
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">sports_gymnastics</span>
-                            <h3 class="text-lg font-black text-secondary">Badminton Courts</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">Professional indoor facility.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor badminton
-                                facility</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Available for
-                                members and guests</li>
-                        </ul>
-                        <button onclick="openModal('badminton')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
-                            Court</button>
-                    </div>
-                </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative bg-gray-200 flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1628108422646-9f899e90af09?q=80&w=800" alt="Squash"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">architecture</span>
-                            <h3 class="text-lg font-black text-secondary">Squash Courts</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">Enclosed glass-back courts.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor squash
-                                courts</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Used for practice
-                                and tournaments</li>
-                        </ul>
-                        <button onclick="openModal('squash')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
-                            Court</button>
-                    </div>
-                </div>
-
-                <div
-                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1552318965-6e6be7484ada?q=80&w=800" alt="Futsal"
-                            class="facility-img w-full h-full object-cover transition-transform duration-500">
-                        <div
-                            class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
-                            Bookable Daily</div>
-                    </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-grow">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary">sports_soccer</span>
-                            <h3 class="text-lg font-black text-secondary">Futsal Ground</h3>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-3">5-a-side indoor football ground.</p>
-                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor facility
-                            </li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-primary text-xs">done</span> Available for
-                                daily booking</li>
-                        </ul>
-                        <button onclick="openModal('futsal')"
-                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
-                            Ground</button>
-                    </div>
-                </div>
-
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-secondary text-gray-300 py-12 sm:py-16 border-t-[6px] border-primary mt-8 sm:mt-12">
+    <footer class="bg-secondary text-gray-300 py-12 sm:py-16 border-t-[6px] border-primary mb-16 md:mb-0 relative z-10">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center md:text-left">
-            <div class="flex flex-col items-center md:items-start gap-4">
+            <div class="flex flex-col items-center md:items-start gap-3 sm:gap-4">
                 <div class="bg-white p-2 rounded-lg inline-block">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
                         alt="CR & FC Logo" class="h-12 sm:h-16 w-auto object-contain" />
@@ -449,7 +331,7 @@
                     <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
                         href="fixtures.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
                         Fixtures</a>
-                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start text-primary"
+                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
                         href="reservation.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
                         Facilities</a>
                 </nav>
@@ -473,8 +355,7 @@
                 </div>
             </div>
         </div>
-        <div
-            class="max-w-7xl mx-auto px-4 text-center mt-8 sm:mt-12 border-t border-white/10 pt-6 sm:pt-8 mb-4 md:mb-0">
+        <div class="max-w-7xl mx-auto px-4 text-center mt-8 sm:mt-12 border-t border-white/10 pt-6 sm:pt-8">
             <p class="text-[10px] sm:text-xs text-gray-400">© 2026 Ceylonese Rugby & Football Club. All Rights Reserved.
             </p>
         </div>
@@ -487,9 +368,8 @@
             <span class="material-symbols-outlined text-[24px]">home</span>
             <span class="text-[10px] font-bold mt-1 tracking-wide">Home</span>
         </a>
-        <a href="squads.html"
-            class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-primary transition-colors">
-            <span class="material-symbols-outlined text-[24px]">groups</span>
+        <a href="squads.html" class="flex flex-col items-center justify-center w-full text-primary">
+            <span class="material-symbols-outlined text-[24px] fill-current">groups</span>
             <span class="text-[10px] font-bold mt-1 tracking-wide">Squads</span>
         </a>
         <a href="fixtures.html"
@@ -497,136 +377,155 @@
             <span class="material-symbols-outlined text-[24px]">calendar_month</span>
             <span class="text-[10px] font-bold mt-1 tracking-wide">Fixtures</span>
         </a>
-        <a href="reservation.html" class="flex flex-col items-center justify-center w-full text-primary">
-            <span class="material-symbols-outlined text-[24px] fill-current">store</span>
+        <a href="reservation.html"
+            class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[24px]">store</span>
             <span class="text-[10px] font-bold mt-1 tracking-wide">Facilities</span>
         </a>
     </nav>
 
-    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-        <div class="absolute inset-0 bg-secondary/80 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+    <script>
+        // --- SQUAD DATA (Captain removed from grid loop) ---
+        const forwards = [
+            { name: "Omalka Gunaratne", num: "7", pos: "Flanker / No.8", age: "~28", nick: "Omi", school: "Isipathana College", details: "Former Sri Lanka national captain and strong forward leader." },
+            { name: "Naveen Marasinghe", num: "4", pos: "Lock", age: "~27", nick: "Navo", school: "St. Joseph's College", details: "Tall second-row forward, strong in line-outs." },
+            { name: "Shenal Adhikaram", num: "4/5", pos: "Lock / Prop", age: "~26", nick: "Shen", school: "Trinity College", details: "Dynamic forward capable of playing multiple roles." },
+            { name: "Thanuja Jayaweera", num: "3", pos: "Prop", age: "~27", nick: "Thanu", school: "St. Peter's College", details: "National squad prop with immense power." },
+            { name: "Venura Kodagoda", num: "2", pos: "Hooker", age: "~27", nick: "Venu", school: "Royal College", details: "Accurate thrower in line-outs." },
+            { name: "Senura Perera", num: "1", pos: "Prop", age: "~25", nick: "Senu", school: "Wesley College", details: "Powerful scrummaging forward." },
+            { name: "Sohiru Anthony", num: "5", pos: "Lock", age: "~26", nick: "Sohiru", school: "Trinity College", details: "Reliable presence in the second row." },
+            { name: "Adeesha Weerathunga", num: "6", pos: "Flanker", age: "~27", nick: "Adee", school: "Kingswood College", details: "Relentless worker at the breakdown." }
+        ];
 
-        <div id="modal-content"
-            class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row transform scale-95 opacity-0 transition-all duration-300 mt-0 sm:mt-0">
+        const backs = [
+            { name: "Thenuka Nanayakkara", num: "10", pos: "Fly-Half", age: "~25", nick: "Thenu", school: "Isipathana College", details: "Creative playmaker driving the attack." },
+            { name: "Mursheed Zubair", num: "14", pos: "Wing / Fullback", age: "~27", nick: "Zubi", school: "Zahira College", details: "Versatile back with great stepping ability." },
+            { name: "Vishenka Silva", num: "12", pos: "Centre", age: "~26", nick: "Vishi", school: "Royal College", details: "Solid defensive organizer in the midfield." },
+            { name: "Auvae Gasalo", num: "13", pos: "Centre", age: "~28", nick: "Gas", school: "Fiji", details: "Foreign player with explosive attacking runs." },
+            { name: "Viduna Amaneth", num: "9", pos: "Scrum-Half", age: "~24", nick: "Vidu", school: "St. Peter's College", details: "Quick distribution from the base." },
+            { name: "Rigesh Muralitharan", num: "21", pos: "Scrum-Half", age: "~24", nick: "Rigi", school: "Trinity College", details: "Provides excellent tempo and vision." },
+            { name: "Rashen Anthony", num: "20", pos: "Scrum-Half", age: "~24", nick: "Rash", school: "St. Joseph's College", details: "Impact player off the bench." },
+            { name: "Yasas Kavindu", num: "14", pos: "Wing", age: "~23", nick: "Yasa", school: "Isipathana College", details: "Lethal finishing pace out wide." },
+            { name: "Samitha Warnakulasooriya", num: "11", pos: "Wing", age: "~25", nick: "Sami", school: "St. Peter's College", details: "Strong ball runner on the edges." },
+            { name: "Ruchira Ekanayake", num: "14", pos: "Wing", age: "~26", nick: "Ruchi", school: "Trinity College", details: "Experienced and reliable defensive winger." },
+            { name: "Zubair Dora", num: "15", pos: "Fullback", age: "~27", nick: "Dora", school: "Zahira College", details: "Safe under the high ball with a big boot." },
+            { name: "Randy Silva", num: "22", pos: "Utility Back", age: "~25", nick: "Randy", school: "Royal College", details: "Can slot seamlessly into multiple backline positions." }
+        ];
 
-            <button onclick="closeModal()"
-                class="absolute top-4 right-4 text-gray-400 hover:text-primary bg-gray-100 hover:bg-red-50 rounded-full p-1 transition-colors z-20">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+        // --- PAST CAPTAINS DATA ---
+        const pastCaptains = [
+            { year: "1923", name: "L.O. Weinman" }, { year: "1924", name: "A.R. Lourensz" }, { year: "1926", name: "A. R. Lourensz" }, { year: "1927", name: "J.A.V. Modder" }, { year: "1929", name: "C.W.M. Oorloff" }, { year: "1930", name: "G. Pereira" }, { year: "1932", name: "E.F.N. Gratiaen" }, { year: "1933", name: "E.F.N. Gratiaen" }, { year: "1934", name: "S G. De Zoysa" }, { year: "1935", name: "S G. De Zoysa" }, { year: "1936", name: "E.F.N. Gratiaen" }, { year: "1937", name: "R.E. blaze" }, { year: "1938", name: "W. D. Ratnavale" }, { year: "1940", name: "N. W. Weerasinghe" }, { year: "1942", name: "2nd World War" }, { year: "1946", name: "F B. Ohlmus" }, { year: "1948", name: "F.E. Kellar" }, { year: "1949", name: "W. Molegoda" }, { year: "1950", name: "A. Perera" }, { year: "1951", name: "M. Rodrigo" }, { year: "1954", name: "S. Navaratnam" }, { year: "1955", name: "S. Navaratnam" }, { year: "1956", name: "M.G. Wright" }, { year: "1957", name: "A.A. Cader" }, { year: "1957", name: "G. Weinman" }, { year: "1958", name: "A.A. Cader" }, { year: "1959", name: "A. Paiva" }, { year: "1960", name: "K. Rambukwelle" }, { year: "1961", name: "G.weinman" }, { year: "1962", name: "G R.ingleton" }, { year: "1964", name: "R.T. De Sylva" }, { year: "1965", name: "S.C. De Sylva" }, { year: "1966", name: "E.D.K. Roles" }, { year: "1967", name: "M. Azaain" }, { year: "1968", name: "T. L. Sirimanne" }, { year: "1969", name: "M. Sahayam" }, { year: "1969", name: "N H. Omar" }, { year: "1970", name: "N.H. Omar" }, { year: "1971", name: "D.V.R Samarasekera" }, { year: "1972", name: "D. De Almeida" }, { year: "1973", name: "K.G. Ratnapala" }, { year: "1974", name: "R. Bartholomeusz" }, { year: "1975", name: "R.W. Schokman" }, { year: "1976", name: "L. Coomaraswamy" }, { year: "1977", name: "S.H.C. Fernando" }, { year: "1978", name: "L.M. De Z. Gunasekera" }, { year: "1979", name: "P.R. Balasuriya" }, { year: "1980", name: "J. Rudra" }, { year: "1981", name: "C. Abeygunawardena" }, { year: "1982", name: "I. Musafer" }, { year: "1983", name: "L.R. Siriwardene" }, { year: "1984", name: "E.M.S. Matthysz" }, { year: "1985", name: "S.K.R.T Peiris" }, { year: "1986", name: "W. Epaarachchi" }, { year: "1987", name: "C. Jordashe" }, { year: "1987", name: "D.T.A. Adhihetty" }, { year: "1988", name: "C. Jordashe" }, { year: "1989", name: "S. Siddik" }, { year: "1990", name: "P Ekanayake" }, { year: "1991", name: "L.V. Ekanayake" }, { year: "1992", name: "Lasitha Gunaratne" }, { year: "1994", name: "Shanitha Fernando" }, { year: "1995", name: "Lasitha Gunaratne" }, { year: "1996", name: "Virat Prasantha" }, { year: "1997", name: "A. Hensman" }, { year: "1998", name: "Champika Nishantha" }, { year: "2000", name: "Savantha De Saram" }, { year: "2001", name: "Kishan Musafer" }, { year: "2002", name: "Asanka Rodrigo" }, { year: "2003", name: "Shamly Nawaz" }, { year: "2004", name: "Pavithra Fernando" }, { year: "2007", name: "Anuradha Dharmatillek" }, { year: "2008", name: "Shamil Mohammed" }, { year: "2009", name: "Ashean Karthelis" }, { year: "2010", name: "Dushanth Lewke" }, { year: "2012", name: "Lasintha De Costa" }, { year: "2013", name: "Ishan Noor" }, { year: "2014", name: "Ashan De Costa" }, { year: "2015", name: "Ishan Noor" }, { year: "2016", name: "Shane Sammandapperuma" }, { year: "2017", name: "Kavindu Perera" }, { year: "2019", name: "Omalka Gunaratne" }, { year: "2020", name: "Kavindu De Costa" }, { year: "2023", name: "Suhiru Anthony" }
+        ];
 
-            <div class="bg-secondary text-white p-6 sm:p-8 md:w-2/5 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl sm:text-2xl font-black mb-3 sm:mb-4 mt-6 md:mt-0">Book a Facility</h3>
-                    <p class="text-gray-300 text-[11px] sm:text-xs mb-6 sm:mb-8 leading-relaxed">
-                        Looking to practice, host a tournament, or just have fun? Send us your details and preferred
-                        time, and our team will sort it out for you.
-                    </p>
+        const defaultImg = "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=600&auto=format&fit=crop";
 
-                    <h4 class="text-xs sm:text-sm font-bold text-primary border-b border-white/10 pb-2 mb-4">Direct
-                        Contacts</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <div class="bg-white/10 p-2 rounded-lg text-primary"><span
-                                    class="material-symbols-outlined text-[16px] sm:text-[18px]">fitness_center</span>
-                            </div>
-                            <div>
-                                <p class="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                                    Power World Gym
-                                </p>
-                                <p class="font-bold text-xs sm:text-sm">+94 11 234 5678</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="bg-white/10 p-2 rounded-lg text-primary"><span
-                                    class="material-symbols-outlined text-[16px] sm:text-[18px]">sports_rugby</span>
-                            </div>
-                            <div>
-                                <p class="text-[9px] sm:text-[10px] text-gray-400 font-bold uppercase tracking-wider">
-                                    Club
-                                    Administration</p>
-                                <p class="font-bold text-xs sm:text-sm">+94 11 269 2222</p>
-                            </div>
-                        </div>
+        function generateCard(player) {
+            return `
+            <div class="player-card group relative bg-white dark:bg-secondary rounded-xl overflow-hidden shadow-md cursor-pointer border border-gray-100 dark:border-gray-800 h-[380px] flex flex-col">
+                <div class="h-64 bg-gray-200 overflow-hidden relative flex-shrink-0">
+                    <img src="${defaultImg}" alt="${player.name}" class="player-img w-full h-full object-cover transition-transform duration-500">
+                    <div class="absolute bottom-0 left-0 bg-primary text-white font-black text-xl px-4 py-2 rounded-tr-xl z-10 shadow-lg">${player.num}</div>
+                    
+                    <div class="overlay-details absolute inset-0 bg-secondary/95 text-white opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-center p-6 z-20 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-primary mb-2 text-3xl">info</span>
+                        <ul class="text-xs space-y-2 text-left w-full mb-4">
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span class="text-gray-400 font-bold">Age</span> <span>${player.age}</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span class="text-gray-400 font-bold">Nick</span> <span>${player.nick}</span>
+                            </li>
+                            <li class="flex justify-between border-b border-white/10 pb-1">
+                                <span class="text-gray-400 font-bold">From</span> <span class="text-right w-3/4 truncate" title="${player.school}">${player.school}</span>
+                            </li>
+                        </ul>
+                        <p class="text-[11px] text-gray-300 italic leading-relaxed line-clamp-3">"${player.details}"</p>
                     </div>
                 </div>
+                <div class="p-4 border-t-4 border-primary bg-white flex-grow flex flex-col justify-center relative z-30">
+                    <h4 class="font-black text-lg text-secondary leading-tight line-clamp-1" title="${player.name}">${player.name}</h4>
+                    <p class="text-primary text-xs font-bold uppercase mt-1 tracking-wider">${player.pos}</p>
+                </div>
             </div>
+            `;
+        }
 
-            <div class="p-6 sm:p-8 md:w-3/5 bg-white relative pb-8">
-                <form id="facility-form" onsubmit="submitForm(event)" class="space-y-4 sm:space-y-5">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-                        <div>
-                            <label for="name" class="block text-[11px] sm:text-xs font-bold text-secondary mb-1">Full
-                                Name <span class="text-primary">*</span></label>
-                            <input type="text" id="name" name="name" required placeholder="John Doe"
-                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-xs sm:text-sm outline-none">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-[11px] sm:text-xs font-bold text-secondary mb-1">Phone
-                                Number <span class="text-primary">*</span></label>
-                            <input type="tel" id="phone" name="phone" required placeholder="07X XXX XXXX"
-                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-xs sm:text-sm outline-none">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-[11px] sm:text-xs font-bold text-secondary mb-1">Email
-                            Address <span class="text-primary">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com"
-                            class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-xs sm:text-sm outline-none">
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-                        <div>
-                            <label for="facility"
-                                class="block text-[11px] sm:text-xs font-bold text-secondary mb-1">Select Facility
-                                <span class="text-primary">*</span></label>
-                            <select id="facility" name="facility" required
-                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-xs sm:text-sm outline-none text-gray-700">
-                                <option value="" disabled selected>Choose an option</option>
-                                <option value="rugby">CR & FC Grounds</option>
-                                <option value="futsal">Futsal Ground</option>
-                                <option value="tennis">Tennis Courts</option>
-                                <option value="badminton">Badminton Courts</option>
-                                <option value="squash">Squash Courts</option>
-                                <option value="gym">Power World Gym</option>
-                                <option value="pool">Swimming Pool</option>
-                                <option value="clubhouse">Clubhouse / Restaurant</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="time"
-                                class="block text-[11px] sm:text-xs font-bold text-secondary mb-1">Preferred Time <span
-                                    class="text-primary">*</span></label>
-                            <input type="time" id="time" name="time" required
-                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-xs sm:text-sm outline-none text-gray-700">
-                        </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <button type="submit"
-                            class="w-full bg-primary text-white font-black text-xs sm:text-sm py-3 sm:py-3.5 rounded-xl hover:bg-red-700 transition-colors shadow-lg shadow-red-500/20 active:scale-[0.98]">
-                            Submit Request
-                        </button>
-                    </div>
-
-                    <div
-                        class="flex items-start justify-center gap-2 mt-3 sm:mt-4 text-center bg-green-50 p-2 sm:p-3 rounded-lg border border-green-100">
-                        <span
-                            class="material-symbols-outlined text-green-600 text-[16px] sm:text-[18px]">verified_user</span>
-                        <p class="text-[10px] sm:text-[11px] text-green-800 leading-tight">
-                            By clicking submit, your email app will open to send the request securely to the club
-                            administration.
-                        </p>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            // Render Squads
+            const forwardsGrid = document.getElementById('forwards-grid');
+            const backsGrid = document.getElementById('backs-grid');
+            forwards.forEach(p => forwardsGrid.innerHTML += generateCard(p));
+            backs.forEach(p => backsGrid.innerHTML += generateCard(p));
+
+            // Render Past Captains Table
+            const pastCaptainsTbody = document.getElementById('past-captains-table-body');
+            // Reversing so newest is at the top
+            [...pastCaptains].reverse().forEach((captain, i) => {
+                const rowId = `pastcap-${captain.year}-${i}`;
+                captain.exactId = rowId; // Saving exact ID for scroll
+
+                pastCaptainsTbody.innerHTML += `
+                    <tr id="${rowId}" class="hover:bg-gray-50 transition-colors border-b border-gray-50">
+                        <td class="py-3 sm:py-4 px-4 sm:px-8 font-black text-primary text-xs sm:text-[14px] border-r border-gray-50">${captain.year}</td>
+                        <td class="py-3 sm:py-4 px-4 sm:px-8 font-bold text-gray-800 text-xs sm:text-[14px]">${captain.name}</td>
+                    </tr>
+                `;
+            });
+
+            // Past Captains Auto-Search Logic
+            const searchInput = document.getElementById('past-captain-search');
+            const suggestionsPanel = document.getElementById('past-captain-suggestions');
+
+            searchInput.addEventListener('input', () => {
+                const val = searchInput.value.toLowerCase();
+                suggestionsPanel.innerHTML = '';
+
+                if (!val) {
+                    suggestionsPanel.classList.add('hidden');
+                    return;
+                }
+
+                const filtered = pastCaptains.filter(c => c.name.toLowerCase().includes(val) || c.year.includes(val));
+
+                if (filtered.length > 0) {
+                    suggestionsPanel.classList.remove('hidden');
+
+                    filtered.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = "px-4 sm:px-6 py-2.5 sm:py-3 hover:bg-gray-50 cursor-pointer text-xs sm:text-sm border-b border-gray-100 flex items-center transition-colors";
+                        div.innerHTML = `
+                            <span class="font-bold text-primary mr-2">${item.year}</span> - 
+                            <span class="font-bold text-gray-800 ml-2">${item.name}</span>
+                        `;
+
+                        div.onclick = () => {
+                            searchInput.value = item.name;
+                            suggestionsPanel.classList.add('hidden');
+
+                            // Scroll to target table row
+                            const targetRow = document.getElementById(item.exactId);
+                            if (targetRow) {
+                                targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                targetRow.classList.add('highlight-row');
+                                setTimeout(() => targetRow.classList.remove('highlight-row'), 2000);
+                            }
+                        };
+                        suggestionsPanel.appendChild(div);
+                    });
+                } else {
+                    suggestionsPanel.classList.add('hidden');
+                }
+            });
+
+            // Close search dropdown on click outside
+            document.addEventListener('click', (e) => {
+                if (!document.getElementById('search-container-captains').contains(e.target)) {
+                    suggestionsPanel.classList.add('hidden');
+                }
+            });
+
+            // Mobile Menu Toggle
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             menuBtn.addEventListener('click', () => {
@@ -634,65 +533,6 @@
                 menuBtn.querySelector('span').textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
             });
         });
-
-        // --- MODAL LOGIC ---
-        const modal = document.getElementById('booking-modal');
-        const modalContent = document.getElementById('modal-content');
-        const facilitySelect = document.getElementById('facility');
-
-        function openModal(facilityValue) {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-
-            setTimeout(() => {
-                modalContent.classList.remove('opacity-0', 'scale-95');
-                modalContent.classList.add('opacity-100', 'scale-100');
-            }, 10);
-
-            if (facilityValue) {
-                facilitySelect.value = facilityValue;
-            } else {
-                facilitySelect.value = "";
-            }
-        }
-
-        function closeModal() {
-            modalContent.classList.remove('opacity-100', 'scale-100');
-            modalContent.classList.add('opacity-0', 'scale-95');
-
-            setTimeout(() => {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
-                document.getElementById('facility-form').reset();
-            }, 300);
-        }
-
-        // --- EMAIL SENDING LOGIC ---
-        function submitForm(e) {
-            e.preventDefault(); // Default submit eka nawathanawa
-
-            // Form eke thiyena data tika gannawa
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const facilityDropdown = document.getElementById('facility');
-            const facilityName = facilityDropdown.options[facilityDropdown.selectedIndex].text;
-            const time = document.getElementById('time').value;
-
-            // Meka owner ge email ekata maru karanna
-            const ownerEmail = "admin@crfc.lk";
-
-            // Email eke details tika hadanawa
-            const subject = encodeURIComponent(`New Booking Request: ${facilityName}`);
-            const body = encodeURIComponent(`Hello CR&FC Team,\n\nI would like to request a booking. Please find my details below:\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nFacility: ${facilityName}\nPreferred Time: ${time}\n\nPlease contact me to confirm the booking.\n\nThank you.`);
-
-            // Mail client eka open karanna link eka hadanawa
-            window.location.href = `mailto:${ownerEmail}?subject=${subject}&body=${body}`;
-
-            // User ta message ekak pennala popup eka close karanawa
-            alert("Redirecting to your email app to send the request!");
-            closeModal();
-        }
     </script>
 </body>
 
