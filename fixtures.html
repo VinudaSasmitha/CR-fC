@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fixtures & Results - CR & FC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d33131",
+                        "secondary": "#1a2a44",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201212",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .filter-btn.active {
+            background-color: #d33131;
+            color: white;
+            border-color: #d33131;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-secondary">
+    <header class="sticky top-0 z-50 bg-secondary text-white shadow-lg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white p-1 rounded-lg">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                            alt="CR & FC Logo" class="h-10 w-auto object-contain" />
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight leading-none">CR & FC</h1>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="history.html">About</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="squads.html">Squads</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="merchandise.html">Merchandise</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="fixtures.html">Fixtures</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="reservation.html">Facilities</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="collection.html">Gallery</a>
+
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="alert('Redirecting to Login Portal...')"
+                            class="hidden sm:block bg-primary hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md active:scale-95">
+                            Login / Pay
+                        </button>
+                        <div class="hidden sm:block border-l border-white/20 h-8 mx-2"></div>
+                        <button onclick="toggleSearch()" class="text-white hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">search</span>
+                        </button>
+                        <button id="mobile-menu-btn"
+                            class="md:hidden text-white hover:text-primary transition-colors ml-2">
+                            <span class="material-symbols-outlined text-3xl">menu</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="absolute top-20 left-0 w-full bg-secondary border-t border-white/10 shadow-xl md:hidden z-40">
+            <div class="flex flex-col px-6 py-4 gap-4">
+                <a class="text-sm font-semibold text-white hover:text-primary" href="history.html">About</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="squads.html">Squads</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="fixtures.html">Fixtures</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="reservation.html">Facilities</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="collection.html">Gallery</a>
+                <button onclick="alert('Redirecting to Login Portal...')"
+                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold mt-2 w-full text-center">
+                    Login / Pay
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="bg-secondary text-white py-16 border-b-[6px] border-primary">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-black mb-4 lowercase tracking-tight">Match Center</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Stay updated with the latest fixtures, upcoming
+                    clashes, and past match results of CR & FC.</p>
+            </div>
+        </section>
+
+        <section id="next-match-section" class="max-w-7xl mx-auto px-4 -mt-8 relative z-10 hidden">
+            <div
+                class="bg-primary text-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 border-4 border-white">
+                <div>
+                    <span
+                        class="bg-white text-primary text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block">Next
+                        Match</span>
+                    <h2 class="text-3xl font-black mb-2">CR & FC <span class="text-red-300 font-normal">vs</span> <span
+                            id="nm-opponent">Opponent</span></h2>
+                    <p class="text-red-100 flex items-center gap-2 font-medium">
+                        <span class="material-symbols-outlined text-sm">calendar_today</span> <span
+                            id="nm-date">Date</span>
+                        <span class="material-symbols-outlined text-sm ml-4">location_on</span> <span
+                            id="nm-venue">Venue</span>
+                    </p>
+                </div>
+
+                <div class="flex gap-4 text-center bg-black/20 p-4 rounded-xl">
+                    <div>
+                        <p class="text-3xl font-black w-12" id="cd-days">00</p>
+                        <p class="text-[10px] uppercase font-bold text-red-200">Days</p>
+                    </div>
+                    <div class="text-white font-black text-2xl">:</div>
+                    <div>
+                        <p class="text-3xl font-black w-12" id="cd-hours">00</p>
+                        <p class="text-[10px] uppercase font-bold text-red-200">Hrs</p>
+                    </div>
+                    <div class="text-white font-black text-2xl">:</div>
+                    <div>
+                        <p class="text-3xl font-black w-12" id="cd-mins">00</p>
+                        <p class="text-[10px] uppercase font-bold text-red-200">Min</p>
+                    </div>
+                </div>
+
+                <button
+                    class="bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-xl font-black uppercase tracking-widest shadow-lg transition-transform active:scale-95 whitespace-nowrap">
+                    Buy Tickets
+                </button>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-16">
+
+            <div class="flex flex-wrap gap-4 mb-10 justify-center">
+                <button
+                    class="filter-btn active border-2 border-gray-300 text-gray-600 font-bold px-6 py-2 rounded-full transition-all"
+                    data-filter="all">All Matches</button>
+                <button
+                    class="filter-btn border-2 border-gray-300 text-gray-600 font-bold px-6 py-2 rounded-full transition-all hover:border-primary hover:text-primary"
+                    data-filter="upcoming">Upcoming</button>
+                <button
+                    class="filter-btn border-2 border-gray-300 text-gray-600 font-bold px-6 py-2 rounded-full transition-all hover:border-primary hover:text-primary"
+                    data-filter="past">Results</button>
+            </div>
+
+            <div id="fixtures-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white pt-16 pb-8 border-t-[6px] border-primary relative z-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-white p-1.5 rounded-lg inline-block">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                            alt="CR & FC Logo" class="h-12 w-auto object-contain" />
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tight leading-none text-white">CR & FC</h2>
+                        <p class="text-xs uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-md">Ceylonese Rugby & Football Club is built on a
+                    century of excellence, grit, and brotherhood. Join us at Longdon Place.</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 border-t border-white/10 pt-8 text-center text-xs text-gray-500 font-medium">
+            <p>&copy; 2026 Ceylonese Rugby & Football Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // 1. MATCH DATA ARRAY (Meke data wenas karama auto okkoma update wenawa)
+            const matches = [
+                {
+                    id: 1,
+                    opponent: "CH & FC",
+                    date: "2026-02-15T16:00:00",
+                    venue: "Racecourse Ground",
+                    type: "Away",
+                    status: "past",
+                    crScore: 24,
+                    oppScore: 15
+                },
+                {
+                    id: 2,
+                    opponent: "Havelock SC",
+                    date: "2026-03-01T15:30:00",
+                    venue: "Longdon Place",
+                    type: "Home",
+                    status: "past",
+                    crScore: 18,
+                    oppScore: 21
+                },
+                {
+                    id: 3,
+                    opponent: "Kandy SC",
+                    date: "2026-04-10T16:00:00", // Issarahata enna thiyena match ekak
+                    venue: "Longdon Place",
+                    type: "Home",
+                    status: "upcoming",
+                    crScore: null,
+                    oppScore: null
+                },
+                {
+                    id: 4,
+                    opponent: "Police SC",
+                    date: "2026-04-25T16:00:00",
+                    venue: "Police Park",
+                    type: "Away",
+                    status: "upcoming",
+                    crScore: null,
+                    oppScore: null
+                }
+            ];
+
+            const container = document.getElementById("fixtures-container");
+            const filterBtns = document.querySelectorAll(".filter-btn");
+
+            // 2. RENDER MATCHES LOGIC
+            function renderMatches(filterType = "all") {
+                container.innerHTML = "";
+
+                const filteredMatches = matches.filter(match => {
+                    if (filterType === "all") return true;
+                    return match.status === filterType;
+                });
+
+                if (filteredMatches.length === 0) {
+                    container.innerHTML = `<p class="text-gray-500 col-span-full text-center py-10">No matches found.</p>`;
+                    return;
+                }
+
+                filteredMatches.forEach(match => {
+                    const matchDate = new Date(match.date);
+                    const formattedDate = matchDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                    const formattedTime = matchDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+                    let scoreHtml = "";
+                    let actionHtml = "";
+
+                    // Past vs Upcoming Logic
+                    if (match.status === "past") {
+                        const isWin = match.crScore > match.oppScore;
+                        const resultColor = isWin ? "text-green-600" : "text-red-600";
+                        const resultText = isWin ? "WIN" : "LOSS";
+
+                        scoreHtml = `
+                            <div class="flex items-center justify-center gap-4 my-4">
+                                <span class="text-3xl font-black text-secondary">${match.crScore}</span>
+                                <span class="text-gray-400 font-bold">-</span>
+                                <span class="text-3xl font-black text-gray-500">${match.oppScore}</span>
+                            </div>
+                            <div class="text-center"><span class="text-xs font-bold ${resultColor} bg-gray-100 px-2 py-1 rounded">${resultText}</span></div>
+                        `;
+                    } else {
+                        scoreHtml = `
+                            <div class="flex items-center justify-center my-4 py-2">
+                                <span class="text-xl font-bold text-gray-300">VS</span>
+                            </div>
+                        `;
+                        actionHtml = `
+                            <div class="mt-4 pt-4 border-t border-gray-100 text-center">
+                                <button class="w-full bg-primary hover:bg-red-700 text-white font-bold py-3 rounded-lg transition-colors active:scale-95">
+                                    Buy Tickets
+                                </button>
+                            </div>
+                        `;
+                    }
+
+                    const card = `
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-shadow relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full ${match.type === 'Home' ? 'bg-primary' : 'bg-gray-400'}"></div>
+                            
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">${match.type} Match</p>
+                                    <h3 class="text-xl font-black text-secondary mt-1">CR & FC <span class="font-normal text-gray-400">vs</span> ${match.opponent}</h3>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-primary">${formattedDate}</p>
+                                    <p class="text-xs text-gray-500 font-medium">${formattedTime}</p>
+                                </div>
+                            </div>
+
+                            ${scoreHtml}
+
+                            <div class="flex items-center justify-center gap-1 text-xs text-gray-500 mt-2 font-medium">
+                                <span class="material-symbols-outlined text-[14px]">location_on</span> ${match.venue}
+                            </div>
+
+                            ${actionHtml}
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            }
+
+            // 3. FILTER BUTTONS LOGIC
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove("active", "bg-primary", "text-white");
+                        b.classList.add("text-gray-600");
+                    });
+
+                    const clickedBtn = e.target;
+                    clickedBtn.classList.add("active");
+                    clickedBtn.classList.remove("text-gray-600");
+
+                    const filterValue = clickedBtn.getAttribute("data-filter");
+                    renderMatches(filterValue);
+                });
+            });
+
+            // 4. NEXT MATCH COUNTDOWN LOGIC
+            function setupNextMatch() {
+                // Find the closest upcoming match
+                const upcomingMatches = matches.filter(m => m.status === "upcoming").sort((a, b) => new Date(a.date) - new Date(b.date));
+
+                if (upcomingMatches.length > 0) {
+                    const nextMatch = upcomingMatches[0];
+                    document.getElementById("next-match-section").classList.remove("hidden");
+
+                    document.getElementById("nm-opponent").innerText = nextMatch.opponent;
+
+                    const nmDate = new Date(nextMatch.date);
+                    document.getElementById("nm-date").innerText = nmDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    document.getElementById("nm-venue").innerText = nextMatch.venue;
+
+                    // Timer Loop
+                    setInterval(() => {
+                        const now = new Date().getTime();
+                        const distance = nmDate.getTime() - now;
+
+                        if (distance > 0) {
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                            document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+                            document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+                            document.getElementById("cd-mins").innerText = minutes.toString().padStart(2, '0');
+                        } else {
+                            document.getElementById("cd-days").innerText = "00";
+                            document.getElementById("cd-hours").innerText = "00";
+                            document.getElementById("cd-mins").innerText = "00";
+                        }
+                    }, 1000);
+                }
+            }
+
+            // Init
+            renderMatches("all");
+            setupNextMatch();
+        });
+    </script>
+</body>
+
+</html>

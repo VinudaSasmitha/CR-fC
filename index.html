@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ceylonese Rugby & Football Club (CR & FC)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d33131",
+                        "secondary": "#1a2a44",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201212",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-wrap:hover .ticker-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* Signature Canvas */
+        #signature-pad {
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            cursor: crosshair;
+            background-color: white;
+            touch-action: none;
+        }
+
+        /* ===== PERFECT CONTINUOUS MARQUEE ===== */
+        .sponsor-marquee {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            background: white;
+        }
+
+        /* fade edges */
+        .sponsor-marquee::before,
+        .sponsor-marquee::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .sponsor-marquee::before {
+            left: 0;
+            background: linear-gradient(to right, white, transparent);
+        }
+
+        .sponsor-marquee::after {
+            right: 0;
+            background: linear-gradient(to left, white, transparent);
+        }
+
+        /* TRACK */
+        .track {
+            display: flex;
+            width: max-content;
+            animation: scroll 25s linear infinite;
+            /* 🔥 smooth + constant */
+        }
+
+        /* LOGOS GROUP */
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            /* 🔥 FIXED */
+            padding-right: 3rem;
+            /* 🔥 THIS KEEPS THE GAP PERFECTLY SEAMLESS BETWEEN LOOPS */
+        }
+
+        /* IMAGES */
+        .logos img {
+            height: 60px;
+            flex-shrink: 0;
+            opacity: 0.85;
+            transition: all 0.4s ease;
+            object-fit: contain;
+        }
+
+        /* HOVER */
+        .logos img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* PAUSE ON HOVER */
+        .sponsor-marquee:hover .track {
+            animation-play-state: paused;
+        }
+
+        /* PERFECT LOOP */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-secondary">
+    <header class="sticky top-0 z-50 bg-secondary text-white shadow-lg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white p-1 rounded-lg">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                            alt="CR & FC Logo" class="h-10 w-auto object-contain" />
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight leading-none">CR & FC</h1>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="history.html">About</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="squads.html">Squads</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="merchandise.html">Merchandise</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="fixtures.html">Fixtures</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="reservation.html">Facilities</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="collection.html">Gallery</a>
+
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="alert('Redirecting to Login Portal...')"
+                            class="hidden sm:block bg-primary hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md active:scale-95">
+                            Login / Pay
+                        </button>
+                        <div class="hidden sm:block border-l border-white/20 h-8 mx-2"></div>
+                        <button onclick="toggleSearch()" class="text-white hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">search</span>
+                        </button>
+                        <button id="mobile-menu-btn"
+                            class="md:hidden text-white hover:text-primary transition-colors ml-2">
+                            <span class="material-symbols-outlined text-3xl">menu</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="absolute top-20 left-0 w-full bg-secondary border-t border-white/10 shadow-xl md:hidden z-40">
+            <div class="flex flex-col px-6 py-4 gap-4">
+                <a class="text-sm font-semibold text-white hover:text-primary" href="history.html">About</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="squads.html">Squads</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="fixtures.html">Fixtures</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="reservation.html">Facilities</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="collection.html">Gallery</a>
+                <button onclick="alert('Redirecting to Login Portal...')"
+                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold mt-2 w-full text-center">
+                    Login / Pay
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-primary text-white py-2 overflow-hidden border-y border-red-800">
+        <div class="ticker-wrap flex items-center cursor-pointer" title="Hover to pause">
+            <div
+                class="flex-shrink-0 bg-secondary px-4 py-1 z-10 font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">campaign</span> Be in the Know
+            </div>
+            <div class="ticker-content flex gap-12 text-sm font-medium italic">
+                <span>CR & FC vs Kandy SC: Match Tickets on Sale now! • Longdon Place Grounds maintenance update • New
+                    training jerseys available at the club shop • Annual General Meeting scheduled for next month</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="relative h-[600px] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-secondary/90 to-secondary/30 z-10"></div>
+                <img alt="Rugby Match Action" class="w-full h-full object-cover"
+                    src="photoes/Champions cup background.png" />
+            </div>
+            <div class="relative z-20 max-w-7xl mx-auto px-4 text-white w-full">
+                <div class="max-w-2xl">
+                    <h2 class="text-primary font-black uppercase tracking-widest mb-4">Longdon Place Legacy</h2>
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Heritage. Passion. <br /><span
+                            class="text-primary">Rugby.</span></h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-lg leading-relaxed">Experience the legacy of
+                        Ceylonese Rugby & Football Club. Join a community built on a century of excellence, grit, and
+                        brotherhood.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button
+                            class="bg-primary hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all shadow-xl flex items-center gap-2">
+                            Join the Club <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 -mt-10 relative z-30">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div
+                    class="bg-white dark:bg-secondary rounded-xl shadow-xl p-6 border-b-4 border-primary flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 p-3 rounded-full text-primary" id="weather-icon-container">
+                            <span class="material-symbols-outlined text-3xl" id="weather-icon">sync</span>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-bold text-gray-500 tracking-wider">Colombo, SL</p>
+                            <p class="text-2xl font-black text-secondary dark:text-white" id="weather-temp">--°C</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-400" id="weather-desc">Loading...</p>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-secondary text-white rounded-xl shadow-xl p-6 border-b-4 border-primary flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 p-3 rounded-full text-white">
+                            <span class="material-symbols-outlined text-3xl">timer</span>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-bold text-primary tracking-wider">Next Match</p>
+                            <p class="text-sm font-bold">vs Kandy SC</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 text-center">
+                        <div>
+                            <p class="text-xl font-black w-8" id="cd-days">00</p>
+                            <p class="text-[8px] uppercase font-bold text-gray-400">Days</p>
+                        </div>
+                        <div class="text-primary font-black text-xl">:</div>
+                        <div>
+                            <p class="text-xl font-black w-8" id="cd-hours">00</p>
+                            <p class="text-[8px] uppercase font-bold text-gray-400">Hrs</p>
+                        </div>
+                        <div class="text-primary font-black text-xl">:</div>
+                        <div>
+                            <p class="text-xl font-black w-8" id="cd-mins">00</p>
+                            <p class="text-[8px] uppercase font-bold text-gray-400">Min</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-primary text-white rounded-xl shadow-xl p-6 border-b-4 border-secondary flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-secondary/20 p-3 rounded-full text-white">
+                            <span class="material-symbols-outlined text-3xl">confirmation_number</span>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase font-bold text-white/80 tracking-wider">Tickets</p>
+                            <p class="text-xl font-black">Match Tickets</p>
+                        </div>
+                    </div>
+                    <button onclick="window.location.href='fixtures.html'"
+                        class="bg-white text-primary px-4 py-2 rounded-lg font-black text-sm uppercase tracking-tight hover:bg-gray-100 transition-colors shadow-sm active:scale-95">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-secondary py-20 border-t border-white/5 mt-10">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="mb-10">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="h-[2px] w-6 bg-primary"></div>
+                        <h2 class="text-primary font-bold uppercase tracking-[0.2em] text-[10px]">WHAT'S ON</h2>
+                    </div>
+                    <h3 class="text-4xl md:text-5xl font-black text-white lowercase tracking-tight">upcoming events</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-[#24344d] rounded-2xl overflow-hidden shadow-xl flex flex-col transition-transform hover:-translate-y-1 duration-300">
+                        <div class="h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&auto=format&fit=crop"
+                                alt="Bar" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <p class="text-[#a0aec0] text-[10px] font-bold uppercase tracking-wider mb-2">Every Monday -
+                                Bar</p>
+                            <h4 class="text-white text-xl font-black lowercase mb-3">monday special night</h4>
+                            <p class="text-[#cbd5e1] text-sm mb-6 flex-grow leading-relaxed">Member discounts on
+                                beverages and live acoustic sessions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white py-12 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 mb-8 text-center">
+                <h2 class="text-primary font-bold uppercase tracking-[0.2em] text-xs">
+                    Official Partners & Sponsors
+                </h2>
+            </div>
+
+            <div class="sponsor-marquee py-8 border-y border-gray-100">
+                <div class="track">
+                    <div class="logos">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIyqZFzuE9oKmAsHpsluir3zm8cco6EXQV0w&s"
+                            alt="Sponsor 1">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/2.png" alt="Sponsor 2">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/3.png" alt="Sponsor 3">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/4.png" alt="Sponsor 4">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/5.png" alt="Sponsor 5">
+                    </div>
+
+                    <div class="logos">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIyqZFzuE9oKmAsHpsluir3zm8cco6EXQV0w&s"
+                            alt="Sponsor 1">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/2.png" alt="Sponsor 2">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/3.png" alt="Sponsor 3">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/4.png" alt="Sponsor 4">
+                        <img src="https://crandfc.lk/wp-content/uploads/2026/02/5.png" alt="Sponsor 5">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-20" id="reservation-section">
+            <div class="mb-12">
+                <h2 class="text-primary font-black uppercase tracking-widest text-sm mb-2">longdon place</h2>
+                <h3
+                    class="text-4xl md:text-5xl font-black text-secondary dark:text-white mb-4 lowercase tracking-tight">
+                    reserve the arena.</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-lg">Grounds, event spaces, or the bar — all in one
+                    place.</p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white dark:bg-background-dark shadow-2xl rounded-2xl p-6 lg:p-10 border border-gray-100">
+
+                <div>
+                    <form id="booking-form" class="space-y-6" enctype="multipart/form-data">
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Select
+                                Location</label>
+                            <select id="main-location" name="Location"
+                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block p-3">
+                                <option value="" disabled selected>Choose a location...</option>
+                                <option value="Ground">Ground (Open for All)</option>
+                                <option value="Event Hall">Event Hall (Open for All)</option>
+                                <option value="Ground Bar Restaurant">Ground Bar / Restaurant (Members Only)</option>
+                            </select>
+                        </div>
+
+                        <div id="sub-location-container" class="hidden p-4 bg-red-50 rounded-lg border border-red-100">
+                            <label class="block text-sm font-bold text-primary mb-2 uppercase tracking-wide">Specific
+                                Area</label>
+                            <select id="sub-location" name="Sub_Location"
+                                class="w-full bg-white border border-red-200 text-gray-900 rounded-lg focus:ring-primary focus:border-primary block p-3">
+                                <option value="" disabled selected>Select Bar/Restaurant Area...</option>
+                                <option value="Open Lobby">Open Lobby</option>
+                                <option value="AC Bar">AC Bar</option>
+                                <option value="Grubber">Grubber</option>
+                                <option value="Cinbin">Cinbin</option>
+                                <option value="VIP Room">VIP Room</option>
+                                <option value="Front Lawn">Front Lawn</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Member ID <span
+                                        class="text-gray-400 font-normal">(Optional)</span></label>
+                                <input type="text" id="member-id" name="Member_ID" placeholder="e.g. CRFC123"
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                                <p class="text-[10px] text-gray-400 mt-1">Leave blank if non-member</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                                <input type="text" id="full-name" name="Name" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+                                <input type="email" id="email" name="Email" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="Phone" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Date</label>
+                                <input type="date" id="booking-date" name="Date" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Start Time</label>
+                                <input type="time" name="Start_Time" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">End Time</label>
+                                <input type="time" name="End_Time" required
+                                    class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Notes & Requirements</label>
+                            <textarea name="Requirements" rows="3"
+                                class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-3"
+                                placeholder="Any special arrangements?"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Attach Documents (If any)</label>
+                            <input id="file-upload"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2"
+                                type="file">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2 flex justify-between">
+                                Signature
+                                <button type="button" id="clear-signature"
+                                    class="text-xs text-primary hover:underline">Clear</button>
+                            </label>
+                            <canvas id="signature-pad" class="w-full h-32"></canvas>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-red-700 text-white font-black uppercase tracking-widest py-4 rounded-lg shadow-xl transition-all active:scale-95">
+                            Submit Reservation Request
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 h-fit sticky top-24">
+                    <h4 class="font-bold text-xl mb-4 text-secondary text-center">Availability Calendar</h4>
+
+                    <div class="flex items-center justify-between mb-4">
+                        <button class="text-gray-500 hover:text-primary"><span
+                                class="material-symbols-outlined">chevron_left</span></button>
+                        <span class="font-bold text-lg" id="cal-month-year">March 2026</span>
+                        <button class="text-gray-500 hover:text-primary"><span
+                                class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs font-bold text-gray-400 mb-2">
+                        <div>Su</div>
+                        <div>Mo</div>
+                        <div>Tu</div>
+                        <div>We</div>
+                        <div>Th</div>
+                        <div>Fr</div>
+                        <div>Sa</div>
+                    </div>
+
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1 text-center text-sm">
+                    </div>
+
+                    <div class="flex justify-center gap-4 mt-6 text-xs text-gray-600">
+                        <div class="flex items-center gap-1">
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div> Available
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div> Partial
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div> Booked
+                        </div>
+                    </div>
+
+                    <div id="date-status-panel" class="mt-6 p-4 bg-white rounded-lg border border-gray-200 hidden">
+                        <h5 class="font-bold text-primary mb-2" id="status-date-title"></h5>
+                        <ul id="status-time-list" class="text-sm text-gray-600 space-y-1"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-secondary text-white pt-16 pb-8 border-t-[6px] border-primary relative z-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-white p-1.5 rounded-lg inline-block">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                            alt="CR & FC Logo" class="h-12 w-auto object-contain" />
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tight leading-none text-white">CR & FC</h2>
+                        <p class="text-xs uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-md">
+                    Ceylonese Rugby & Football Club is built on a century of excellence, grit, and brotherhood. Join us
+                    at Longdon Place to experience the true spirit of sportsmanship.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-primary rounded-full"></span> Quick Links
+                </h4>
+                <ul class="space-y-3 text-sm font-medium text-gray-400">
+                    <li><a href="history.html"
+                            class="hover:text-primary transition-colors flex items-center gap-2"><span
+                                class="material-symbols-outlined text-[14px]">arrow_right_alt</span> Our History</a>
+                    </li>
+                    <li><a href="squads.html" class="hover:text-primary transition-colors flex items-center gap-2"><span
+                                class="material-symbols-outlined text-[14px]">arrow_right_alt</span> Rugby Squads</a>
+                    </li>
+                    <li><a href="fixtures.html"
+                            class="hover:text-primary transition-colors flex items-center gap-2"><span
+                                class="material-symbols-outlined text-[14px]">arrow_right_alt</span> Matches &
+                            Tickets</a></li>
+                    <li><a href="reservation.html"
+                            class="hover:text-primary transition-colors flex items-center gap-2"><span
+                                class="material-symbols-outlined text-[14px]">arrow_right_alt</span> Reserve
+                            Facilities</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-primary rounded-full"></span> Reach Us
+                </h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+                        <span>28, Malalasekara Mawatha,<br>Colombo 07, Sri Lanka</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">call</span>
+                        <span>+94 11 2 581 124</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-xl">mail</span>
+                        <span>info@crandfc.lk</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-4 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-medium">
+            <p>&copy; 2026 Ceylonese Rugby & Football Club. All Rights Reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1"><span
+                        class="material-symbols-outlined text-sm">public</span> Web</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1"><span
+                        class="material-symbols-outlined text-sm">photo_camera</span> Instagram</a>
+                <a href="#" class="hover:text-white transition-colors flex items-center gap-1"><span
+                        class="material-symbols-outlined text-sm">thumb_up</span> Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const bookingForm = document.getElementById('booking-form');
+            const mainLoc = document.getElementById('main-location');
+            const subLoc = document.getElementById('sub-location');
+            const subLocContainer = document.getElementById('sub-location-container');
+
+            const memberIdInput = document.getElementById('member-id');
+            const nameInput = document.getElementById('full-name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+
+            const canvas = document.getElementById('signature-pad');
+            const ctx = canvas.getContext('2d');
+
+            /* ================= LOCATION LOGIC ================= */
+            mainLoc.addEventListener('change', (e) => {
+                if (e.target.value === 'Ground Bar Restaurant') {
+                    subLocContainer.classList.remove('hidden');
+                } else {
+                    subLocContainer.classList.add('hidden');
+                    subLoc.value = "";
+                }
+            });
+
+            /* ================= SIGNATURE ================= */
+            let isDrawing = false;
+
+            function resizeCanvas() {
+                const ratio = window.devicePixelRatio || 1;
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                ctx.scale(ratio, ratio);
+            }
+            resizeCanvas();
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing) return;
+                ctx.lineWidth = 2;
+                ctx.lineCap = "round";
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(e.offsetX, e.offsetY);
+            });
+
+            document.getElementById('clear-signature').addEventListener('click', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
+            /* ================= SUBMIT ================= */
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const locVal = mainLoc.value;
+                const memVal = memberIdInput.value.trim();
+
+                // ✅ validation
+                if (!locVal) {
+                    alert("Select location");
+                    return;
+                }
+
+                if (locVal === 'Ground Bar Restaurant' && !memVal) {
+                    alert("Members only area!");
+                    return;
+                }
+
+                const startTime = document.querySelector('[name="Start_Time"]').value;
+                const endTime = document.querySelector('[name="End_Time"]').value;
+
+                if (startTime >= endTime) {
+                    alert("Invalid time range");
+                    return;
+                }
+
+                const submitBtn = bookingForm.querySelector('button[type="submit"]');
+                submitBtn.textContent = "Sending...";
+                submitBtn.disabled = true;
+
+                const formData = new FormData();
+
+                formData.append('location', locVal);
+                formData.append('subLocation', subLoc.value);
+                formData.append('memberId', memVal);
+                formData.append('name', nameInput.value);
+                formData.append('email', emailInput.value);
+                formData.append('phone', phoneInput.value);
+                formData.append('date', document.getElementById('booking-date').value);
+                formData.append('startTime', startTime);
+                formData.append('endTime', endTime);
+                formData.append('requirements', document.querySelector('[name="Requirements"]').value);
+
+                // signature
+                const signature = canvas.toDataURL();
+                formData.append('signature', signature);
+
+                // file
+                const file = document.getElementById('file-upload').files[0];
+                if (file) {
+                    formData.append('document', file);
+                }
+
+                try {
+                    const res = await fetch('http://localhost:3000/api/book', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await res.json();
+
+                    if (data.success) {
+                        alert("Reservation Success ✅");
+                        bookingForm.reset();
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        subLocContainer.classList.add('hidden');
+                    } else {
+                        alert("Failed ❌");
+                    }
+
+                } catch (err) {
+                    alert("Server error ❌");
+                }
+
+                submitBtn.textContent = "Submit Reservation Request";
+                submitBtn.disabled = false;
+            });
+
+        });
+    </script>
+</body>
+
+</html>

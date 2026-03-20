@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Facilities | CR & FC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d33131",
+                        "secondary": "#1a2a44",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201212",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        .facility-card:hover .facility-img {
+            transform: scale(1.05);
+        }
+
+        .facility-card {
+            transition: all 0.3s ease;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #d33131;
+        }
+
+        /* Modal Animations */
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        .modal-exit {
+            animation: modalFadeOut 0.3s ease-in forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes modalFadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+        }
+    </style>
+</head>
+
+<body class="text-secondary selection:bg-primary selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-secondary text-white shadow-lg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white p-1 rounded-lg">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                            alt="CR & FC Logo" class="h-10 w-auto object-contain" />
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight leading-none">CR & FC</h1>
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="history.html">About</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors" href="squads.html">Squads</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="merchandise.html">Merchandise</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="fixtures.html">Fixtures</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="reservation.html">Facilities</a>
+                    <a class="text-sm font-semibold hover:text-primary transition-colors"
+                        href="collection.html">Gallery</a>
+
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="alert('Redirecting to Login Portal...')"
+                            class="hidden sm:block bg-primary hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md active:scale-95">
+                            Login / Pay
+                        </button>
+                        <div class="hidden sm:block border-l border-white/20 h-8 mx-2"></div>
+                        <button onclick="toggleSearch()" class="text-white hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">search</span>
+                        </button>
+                        <button id="mobile-menu-btn"
+                            class="md:hidden text-white hover:text-primary transition-colors ml-2">
+                            <span class="material-symbols-outlined text-3xl">menu</span>
+                        </button>
+                    </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="absolute top-20 left-0 w-full bg-secondary border-t border-white/10 shadow-xl md:hidden z-40">
+            <div class="flex flex-col px-6 py-4 gap-4">
+                <a class="text-sm font-semibold text-white hover:text-primary" href="history.html">About</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="squads.html">Squads</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="fixtures.html">Fixtures</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="reservation.html">Facilities</a>
+                <a class="text-sm font-semibold text-white hover:text-primary" href="collection.html">Gallery</a>
+                <button onclick="alert('Redirecting to Login Portal...')"
+                    class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold mt-2 w-full text-center">
+                    Login / Pay
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pb-24">
+        <section class="bg-secondary py-24 px-4 text-center relative overflow-hidden">
+            <div
+                class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1543165243-d92e591a457c?q=80&w=1920')] bg-cover bg-center">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary/90"></div>
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <span
+                    class="bg-primary/20 border border-primary text-primary px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6 inline-block">Experience
+                    Excellence</span>
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">OUR <span
+                        class="text-primary">Facilities</span></h1>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    Discover the premium amenities available to members and guests at the historic Longdon Place. From
+                    professional sports grounds to relaxing clubhouses.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col lg:col-span-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1596489360980-87422f42a1aa?q=80&w=1200"
+                            alt="Rugby Ground"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-secondary text-white text-xs font-bold px-3 py-1 rounded shadow-md">
+                            Capacity: ~5,500</div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="material-symbols-outlined text-primary text-2xl">sports_rugby</span>
+                                <h3 class="text-2xl font-black text-secondary">CR & FC Grounds (Longdon Place)</h3>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4 leading-relaxed">The legendary grass rugby field, home
+                                to the Red Shirts.</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-secondary font-semibold mb-6">
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">check_circle</span> Night
+                                    matches (Floodlights)</li>
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Dressing rooms & Pavilion</li>
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                    Corporate viewing boxes</li>
+                            </ul>
+                        </div>
+                        <button onclick="openModal('rugby')"
+                            class="w-full md:w-auto self-start bg-primary text-white font-bold py-2.5 px-8 rounded-lg hover:bg-red-700 transition shadow-md">Book
+                            Ground</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800"
+                            alt="Clubhouse"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="material-symbols-outlined text-primary text-2xl">local_cafe</span>
+                                <h3 class="text-xl font-black text-secondary">Clubhouse Facilities</h3>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4 leading-relaxed">Relax and socialize in our premium
+                                clubhouse environments.</p>
+                            <ul class="space-y-2 text-sm text-secondary font-semibold mb-6">
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">restaurant</span> Sports
+                                    Bar & Restaurant</li>
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">sports_esports</span>
+                                    Billiards Room</li>
+                                <li class="flex items-center gap-2"><span
+                                        class="material-symbols-outlined text-primary text-sm">deck</span> Match Viewing
+                                    Deck</li>
+                            </ul>
+                        </div>
+                        <button onclick="openModal('clubhouse')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2.5 rounded-lg hover:bg-primary hover:text-white transition">Reserve
+                            a Table</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800" alt="Gym"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
+                            5 AM - 10 PM</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">fitness_center</span>
+                            <h3 class="text-lg font-black text-secondary">Power World Gym</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Inside the club premises.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Weight training
+                                equipment</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Fitness training
+                                for rugby players</li>
+                        </ul>
+                        <button onclick="openModal('gym')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Inquire
+                            Membership</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1576013551627-11971f36c9d0?q=80&w=800" alt="Pool"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-secondary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
+                            Swim America</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">pool</span>
+                            <h3 class="text-lg font-black text-secondary">Swimming Pool</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">For members and training.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Club member
+                                access</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Swim classes
+                                (Swim America)</li>
+                        </ul>
+                        <button onclick="openModal('pool')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
+                            Session</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a631d1?q=80&w=800" alt="Tennis"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">sports_tennis</span>
+                            <h3 class="text-lg font-black text-secondary">Tennis Courts</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Premium outdoor courts.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Floodlit for
+                                night play</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Tennis academy
+                                training</li>
+                        </ul>
+                        <button onclick="openModal('tennis')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
+                            Court</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative bg-secondary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-7xl text-white/20">sports_tennis</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">sports_gymnastics</span>
+                            <h3 class="text-lg font-black text-secondary">Badminton Courts</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Professional indoor facility.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor badminton
+                                facility</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Available for
+                                members and guests</li>
+                        </ul>
+                        <button onclick="openModal('badminton')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
+                            Court</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative bg-gray-200 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1628108422646-9f899e90af09?q=80&w=800" alt="Squash"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">architecture</span>
+                            <h3 class="text-lg font-black text-secondary">Squash Courts</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Enclosed glass-back courts.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor squash
+                                courts</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Used for practice
+                                and tournaments</li>
+                        </ul>
+                        <button onclick="openModal('squash')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
+                            Court</button>
+                    </div>
+                </div>
+
+                <div
+                    class="facility-card bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1552318965-6e6be7484ada?q=80&w=800" alt="Futsal"
+                            class="facility-img w-full h-full object-cover transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-md">
+                            Bookable Daily</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="material-symbols-outlined text-primary">sports_soccer</span>
+                            <h3 class="text-lg font-black text-secondary">Futsal Ground</h3>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">5-a-side indoor football ground.</p>
+                        <ul class="space-y-1.5 text-xs text-secondary font-semibold mt-auto mb-5">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Indoor facility
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-xs">done</span> Available for
+                                daily booking</li>
+                        </ul>
+                        <button onclick="openModal('futsal')"
+                            class="w-full bg-gray-100 text-primary border border-primary/20 font-bold py-2 rounded-lg hover:bg-primary hover:text-white transition mt-auto">Book
+                            Ground</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-secondary text-gray-300 py-16 border-t-[6px] border-primary mt-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <div class="bg-white p-2 rounded-lg inline-block">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPBKXe31SnHz45mJj62GkpEoD-62YNV9dlQ&s"
+                        alt="CR & FC Logo" class="h-16 w-auto object-contain" />
+                </div>
+                <h2 class="text-xl font-extrabold tracking-tight text-white">Ceylonese Rugby & Football Club</h2>
+                <p class="text-xs uppercase tracking-[0.2em] text-primary font-bold">Est. 1922</p>
+            </div>
+            <div class="space-y-4">
+                <h4
+                    class="text-sm font-bold uppercase tracking-wider text-white border-b-2 border-primary pb-2 inline-block">
+                    Quick Links</h4>
+                <nav class="flex flex-col gap-3 text-sm">
+                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                        href="history.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        About Heritage</a>
+                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                        href="squads.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        Squads</a>
+                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                        href="fixtures.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        Fixtures</a>
+                    <a class="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                        href="reservation.html"><span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                        Facilities</a>
+                </nav>
+            </div>
+            <div class="space-y-4">
+                <h4
+                    class="text-sm font-bold uppercase tracking-wider text-white border-b-2 border-primary pb-2 inline-block">
+                    Contact Info</h4>
+                <p class="text-sm leading-relaxed flex items-start gap-2 justify-center md:justify-start">
+                    <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">location_on</span>
+                    Longdon Place,<br>Colombo 07, Sri Lanka.
+                </p>
+                <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
+                    <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-primary transition-colors text-white"><span
+                            class="material-symbols-outlined text-[20px]">call</span></a>
+                    <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-primary transition-colors text-white"><span
+                            class="material-symbols-outlined text-[20px]">mail</span></a>
+                    <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-primary transition-colors text-white"><span
+                            class="material-symbols-outlined text-[20px]">language</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 text-center mt-12 border-t border-white/10 pt-8">
+            <p class="text-xs text-gray-400">© 2026 Ceylonese Rugby & Football Club. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-secondary/80 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+        <div id="modal-content"
+            class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row transform scale-95 opacity-0 transition-all duration-300">
+
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-primary bg-gray-100 hover:bg-red-50 rounded-full p-1 transition-colors z-20">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <div class="bg-secondary text-white p-8 md:w-2/5 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-black mb-4 mt-4 md:mt-0">Book a Facility</h3>
+                    <p class="text-gray-300 text-xs mb-8 leading-relaxed">
+                        Looking to practice, host a tournament, or just have fun? Send us your details and preferred
+                        time, and our team will sort it out for you.
+                    </p>
+
+                    <h4 class="text-sm font-bold text-primary border-b border-white/10 pb-2 mb-4">Direct Contacts</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/10 p-2 rounded-lg text-primary"><span
+                                    class="material-symbols-outlined text-[18px]">fitness_center</span></div>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Power World Gym
+                                </p>
+                                <p class="font-bold text-sm">+94 11 234 5678</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-white/10 p-2 rounded-lg text-primary"><span
+                                    class="material-symbols-outlined text-[18px]">sports_rugby</span></div>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Club
+                                    Administration</p>
+                                <p class="font-bold text-sm">+94 11 269 2222</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 md:w-3/5 bg-white relative">
+                <form id="facility-form" onsubmit="submitForm(event)" class="space-y-5">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="name" class="block text-xs font-bold text-secondary mb-1.5">Full Name <span
+                                    class="text-primary">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm outline-none">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-bold text-secondary mb-1.5">Phone Number <span
+                                    class="text-primary">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="07X XXX XXXX"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-xs font-bold text-secondary mb-1.5">Email Address <span
+                                class="text-primary">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com"
+                            class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="facility" class="block text-xs font-bold text-secondary mb-1.5">Select Facility
+                                <span class="text-primary">*</span></label>
+                            <select id="facility" name="facility" required
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm outline-none text-gray-700">
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="rugby">CR & FC Grounds</option>
+                                <option value="futsal">Futsal Ground</option>
+                                <option value="tennis">Tennis Courts</option>
+                                <option value="badminton">Badminton Courts</option>
+                                <option value="squash">Squash Courts</option>
+                                <option value="gym">Power World Gym</option>
+                                <option value="pool">Swimming Pool</option>
+                                <option value="clubhouse">Clubhouse / Restaurant</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="time" class="block text-xs font-bold text-secondary mb-1.5">Preferred Time <span
+                                    class="text-primary">*</span></label>
+                            <input type="time" id="time" name="time" required
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm outline-none text-gray-700">
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit"
+                            class="w-full bg-primary text-white font-black text-sm py-3.5 rounded-xl hover:bg-red-700 transition-colors shadow-lg shadow-red-500/20 active:scale-[0.98]">
+                            Submit Request
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex items-start justify-center gap-2 mt-4 text-center bg-green-50 p-3 rounded-lg border border-green-100">
+                        <span class="material-symbols-outlined text-green-600 text-[18px]">verified_user</span>
+                        <p class="text-[11px] text-green-800 leading-tight">
+                            By clicking submit, your email app will open to send the request securely to the club
+                            administration.
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                menuBtn.querySelector('span').textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+            });
+        });
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('booking-modal');
+        const modalContent = document.getElementById('modal-content');
+        const facilitySelect = document.getElementById('facility');
+
+        function openModal(facilityValue) {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            setTimeout(() => {
+                modalContent.classList.remove('opacity-0', 'scale-95');
+                modalContent.classList.add('opacity-100', 'scale-100');
+            }, 10);
+
+            if (facilityValue) {
+                facilitySelect.value = facilityValue;
+            } else {
+                facilitySelect.value = "";
+            }
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('opacity-100', 'scale-100');
+            modalContent.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.getElementById('facility-form').reset();
+            }, 300);
+        }
+
+        // --- EMAIL SENDING LOGIC ---
+        function submitForm(e) {
+            e.preventDefault(); // Default submit eka nawathanawa
+
+            // Form eke thiyena data tika gannawa
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const facilityDropdown = document.getElementById('facility');
+            const facilityName = facilityDropdown.options[facilityDropdown.selectedIndex].text;
+            const time = document.getElementById('time').value;
+
+            // Meka owner ge email ekata maru karanna
+            const ownerEmail = "admin@crfc.lk";
+
+            // Email eke details tika hadanawa
+            const subject = encodeURIComponent(`New Booking Request: ${facilityName}`);
+            const body = encodeURIComponent(`Hello CR&FC Team,\n\nI would like to request a booking. Please find my details below:\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nFacility: ${facilityName}\nPreferred Time: ${time}\n\nPlease contact me to confirm the booking.\n\nThank you.`);
+
+            // Mail client eka open karanna link eka hadanawa
+            window.location.href = `mailto:${ownerEmail}?subject=${subject}&body=${body}`;
+
+            // User ta message ekak pennala popup eka close karanawa
+            alert("Redirecting to your email app to send the request!");
+            closeModal();
+        }
+    </script>
+</body>
+
+</html>
